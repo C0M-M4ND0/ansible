@@ -1,0 +1,21 @@
+---
+- name: install nginx
+  hosts: all
+  become: yes
+  tasks:
+  - name: update apt cache
+    apt:
+      update_cache: yes
+  - name: install nginx
+    apt:
+      name: nginx
+      state: present
+- name: copy website files to nginx
+  hosts: all
+  become: yes
+  tasks:
+  - name: copy
+    copy:
+      src: ./website/
+      dest: /var/www/html/
+ 
